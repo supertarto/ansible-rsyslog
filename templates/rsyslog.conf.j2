@@ -1,0 +1,96 @@
+
+
+# /etc/rsyslog.conf configuration file for rsyslog
+#
+# For more information install rsyslog-doc and see
+# /usr/share/doc/rsyslog-doc/html/configuration/index.html
+
+
+#################
+#### MODULES ####
+#################
+
+module(load="imuxsock") # provides support for local system logging
+module(load="imklog")   # provides kernel logging support
+#module(load="immark")  # provides --MARK-- message capability
+
+# provides UDP syslog reception
+#module(load="imudp")
+#input(type="imudp" port="514")
+
+# provides TCP syslog reception
+#module(load="imtcp")
+#input(type="imtcp" port="514")
+
+
+###########################
+#### GLOBAL DIRECTIVES ####
+###########################
+
+#
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+#
+
+#$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+#
+# Set the default permissions for all log files.
+#
+$FileOwner {{ rsyslog_file_owner }}
+$FileGroup {{ rsyslog_file_group }}
+$FileCreateMode {{ rsyslog_file_create_mode }}
+$DirCreateMode {{ rsyslog_dir_create_mode }}
+$Umask {{ rsyslog_umask }}
+
+
+#
+# Where to place spool and state files
+#
+$WorkDirectory {{ rsyslog_work_directory }}
+
+#
+# Include all config files in /etc/rsyslog.d/
+#
+$IncludeConfig {{ rsyslog_include_config }}
+
+
+###############
+#### RULES ####
+###############
+
+#
+# First some standard log files.  Log by facility.
+#
+auth,authpriv.*                 {{ rsyslog_auth_log }}
+*.*;auth,authpriv.none          -/var/log/syslog-d/syslog.log
+#cron.*                         /var/log/cron/cron.log
+daemon.*                        -{{ rsyslog_daemon_log }}
+kern.*                          -{{ rsyslog_kern_log }}
+lpr.*                           -{{ rsyslog_lpr_log }}
+mail.*                          -{{ rsyslog_mail_log }}
+user.*                          -{{ rsyslog_user_log }}
+
+#
+# Logging for the mail system.  Split it up so that
+# it is easy to write scripts to parse these files.
+#
+mail.info                       -{{ rsyslog_mail_info_log }}
+mail.warn                       -{{ rsyslog_mail_warn_log }}
+mail.err                        {{ rsyslog_mail_err_log }}
+
+#
+# Some "catch-all" log files.
+#
+*.=debug;\
+        auth,authpriv.none;\
+        news.none;mail.none     -{{ rsyslog_debug_log }}
+*.=info;*.=notice;*.=warn;\
+        auth,authpriv.none;\
+        cron,daemon.none;\
+        mail,news.none          -{{ rsyslog_messages_log }}
+
+#
+# Emergencies are sent to everybody logged in.
+#
+*.emerg                         :omusrmsg:*

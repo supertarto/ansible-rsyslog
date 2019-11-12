@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: "Xavier Binois"
-  description: " "
+  description: "Ansible role to install and configure rsyslog"
   role_name: 
   company:
   license: "GNU General Public License v3.0"
@@ -13,6 +13,9 @@ galaxy_info:
         - "stretch"
         - "buster"
 
-  galaxy_tags: []
+  galaxy_tags:
+    - "security"
+    - "logging"
+    - "rsyslog"
 
 dependencies: []
