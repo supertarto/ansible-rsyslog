@@ -26,6 +26,7 @@ rsyslog_daemon_log: /var/log/daemon/daemon.log
 rsyslog_kern_log: /var/log/kern/kern.log
 rsyslog_lpr_log: /var/log/lpr/lpr.log
 rsyslog_mail_log: /var/log/mail/mail.log
+rsyslog_user_log: /var/log/user/user.log
 rsyslog_mail_info_log: /var/log/mail/mail.info
 rsyslog_mail_warn_log: /var/log/mail/mail.warn
 rsyslog_mail_err_log: /var/log/mail/mail.err
