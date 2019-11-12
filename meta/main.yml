@@ -2,7 +2,7 @@
 galaxy_info:
   author: "Xavier Binois"
   description: "Ansible role to install and configure rsyslog"
-  role_name:
+  role_name: rsyslog
   company:
   license: "GNU General Public License v3.0"
   min_ansible_version: 2.8
