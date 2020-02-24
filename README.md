@@ -7,7 +7,6 @@ Role to install an configure Rsyslog with Ansible.
 None
 
 ## Tested plateform
-* Debian 9 (Stretch)
 * Debian 10 (Buster)
 
 ## Role variables
