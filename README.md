@@ -1,5 +1,5 @@
 # Ansible Rsyslog
-[![Build Status](https://travis-ci.com/supertarto/ansible-rsyslog.svg?branch=master)](https://travis-ci.com/supertarto/ansible-rsyslog)
+[![CI](https://github.com/supertarto/ansible-rsyslog/workflows/CI/badge.svg?event=push)](https://github.com/supertarto/ansible-rsyslog/actions?query=workflow%3ACI)
 
 Role to install an configure Rsyslog with Ansible.
 
