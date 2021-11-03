@@ -8,9 +8,11 @@ None
 
 ## Tested plateform
 * Debian 10 (Buster)
+* Debian 11 (Bulleyes)
 
 ## Role variables
 Those variables are used to determine who is the owner of the files created by rsyslog, and to define the associated rights.
+
 ```yml
 rsyslog_file_owner: root
 rsyslog_file_group: adm
@@ -18,7 +20,9 @@ rsyslog_file_create_mode: 0640
 rsyslog_dir_create_mode: 0755
 rsyslog_umask: 0022
 ```
+
 Path to the logs files
+
 ```yml
 rsyslog_work_directory: /var/spool/rsyslog
 rsyslog_include_config: /etc/rsyslog.d/*.conf
@@ -36,6 +40,7 @@ rsyslog_messages_log: /var/log/messages-d/messages.log
 ```
 
 ## Example(s)
+
 ```yml
 ---
 - hosts: somehost
@@ -48,9 +53,12 @@ rsyslog_messages_log: /var/log/messages-d/messages.log
 
 
 ```
+
 ## Installation
-```
+
+```bash
 ansible-galaxy install supertarto.rsyslog
 ```
+
 ## License
 GPL V3.0
